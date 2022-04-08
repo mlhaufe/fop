@@ -1,0 +1,70 @@
+{
+  "name": "fop",
+  "version": "0.0.1",
+  "description": "A library to support Feature-Oriented Programming",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "npm run clean && npm run lint",
+    "build": "webpack",
+    "prebuild-nofix": "npm run clean && npm run lint-nofix",
+    "build-nofix": "webpack",
+    "clean": "rimraf ./dist ./coverage",
+    "clean-full": "rimraf ./dist, ./coverage, ./.cache, ./node_modules",
+    "debug": "node --inspect-brk --expose-gc ./node_modules/.bin/jest --runInBand --logHeapUsage",
+    "prelint": "npm run type-check",
+    "lint": "eslint src/ --ext .ts --fix",
+    "prelint-nofix": "npm run type-check",
+    "lint-nofix": "eslint src/ --ext .ts",
+    "test": "jest --coverage",
+    "type-check": "tsc -p tsconfig.json --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlhaufe/fop.git"
+  },
+  "keywords": [
+    "Feature-Oriented-Programming"
+  ],
+  "author": "Michael L Haufe <tno@thenewobjective.com> (https://thenewobjective.com)",
+  "license": "AGPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/mlhaufe/fop/issues"
+  },
+  "jest": {
+    "reporters": [
+        "default",
+        [
+            "jest-junit",
+            {
+                "outputDirectory": "./coverage"
+            }
+        ]
+    ],
+    "testEnvironment": "node",
+    "transform": {
+        "^.+\\.ts$": "ts-jest"
+    }
+},
+  "homepage": "https://github.com/mlhaufe/fop#readme",
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "@types/node": "^17.0.23",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "@typescript-eslint/parser": "^5.18.0",
+    "eslint": "^8.12.0",
+    "eslint-plugin-header": "^3.1.1",
+    "eslint-plugin-import": "^2.26.0",
+    "jest": "^27.5.1",
+    "jest-junit": "^13.1.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.1.4",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "files": [
+    "dist"
+  ]
+}
